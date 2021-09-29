@@ -8,7 +8,7 @@ RSpec.describe 'Creating a book', type: :feature do
         fill_in 'Title', with: 'Harry Potter'
         fill_in 'Author', with: 'J. K. Rowling'
         fill_in 'Price', with: '12.37'
-        fill_in 'Published Date', with: '06-26-1997'
+        select_date Date.current, :from => 'book_published_date'
         click_on 'Create Book'
         visit books_path
         expect(page).to have_content('Harry Potter')
@@ -19,7 +19,7 @@ RSpec.describe 'Creating a book', type: :feature do
         fill_in 'Title', with: 'Harry Potter'
         fill_in 'Author', with: 'J. K. Rowling'
         fill_in 'Price', with: '12.37'
-        fill_in 'Published Date', with: '06-26-1997'
+        select_date Date.current, :from => 'book_published_date'
         click_on 'Create Book'
         expect(page).to have_content('J. K. Rowling')
     end
@@ -29,7 +29,7 @@ RSpec.describe 'Creating a book', type: :feature do
         fill_in 'Title', with: 'Harry Potter'
         fill_in 'Author', with: 'J. K. Rowling'
         fill_in 'Price', with: '12.37'
-        fill_in 'Published Date', with: '06-26-1997'
+        select_date Date.current, :from => 'book_published_date'
         click_on 'Create Book'
         visit books_path
         expect(page).to have_content('12.37')
@@ -40,10 +40,10 @@ RSpec.describe 'Creating a book', type: :feature do
         fill_in 'Title', with: 'Harry Potter'
         fill_in 'Author', with: 'J. K. Rowling'
         fill_in 'Price', with: '12.37'
-        fill_in 'Published Date', with: '06-26-1997'
+        select_date Date.current, :from => 'book_published_date'
         click_on 'Create Book'
         visit books_path
-        expect(page).to have_content('06-26-1997')
+        expect(page).to have_content(Date.current.strftime("%m/%d/%Y"))
     end
     
 end

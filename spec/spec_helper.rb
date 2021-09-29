@@ -14,6 +14,17 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  def select_date(date, options = {})
+        
+    field = options[:from]
+    select date.year.to_s, :from => "#{field}_1i"
+    select date.strftime("%B"), :from => "#{field}_2i"
+    select date.day.to_s, :from => "#{field}_3i"
+
+  end
+
+ # config.include DateSelectMacros, :type => :feature
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
